@@ -4,18 +4,12 @@
     <title>Getting Started Extension's Popup</title>
     <link rel="stylesheet" href="popup.css">
 
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: http://developer.chrome.com/extensions/contentSecurityPolicy.html
-     -->
     <script src="jquery.min.js"></script>
     <script src="popup.js"></script>
     <script type="text/template" id="cardTemplate">
       <li class="flip">
         <div class="card">
-          <div class="basket drop-shadow curved curved-hz-2" data-bid="{0}">
+          <div class="basket drop-shadow curved curved-hz-2" data-bid="{0}" data-fid="">
             <p class="left">{1}</p>
             <p class="right">{2}</p>
           </div>
@@ -25,7 +19,9 @@
   </head>
   <body>
   <div class="container">
-    <a href="http://www.guokr.com/">guokr</a>
+    <div class="hack">
+      hack
+    </div>
     <div class="baskets">
     </div>
   </div>

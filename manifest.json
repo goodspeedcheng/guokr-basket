@@ -18,7 +18,20 @@
     "author": "goodspeed",
 
     "permissions": [
+		"tabs",
         "cookies",
-        "*://www.guokr.com/"
-    ]
+		"*://*/*"
+    ],
+
+	"content_scripts": [
+	    {
+		"matches": ["*://*/*"],
+		"js": ["jquery.min.js", "popup.js"]
+	    }
+	],
+	
+	"background": {
+        "scripts": ["popup.js"],
+	    "persistent": false
+	}
 }
