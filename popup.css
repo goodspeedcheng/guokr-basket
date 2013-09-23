@@ -3,16 +3,19 @@ html {
 }
 
 body, div, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, button, p, th, td {
-  margin: 0;
-  padding: 0;
+	color: #666;
+	font-size: 14px;
+	font-family: Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  min-width: 357px;
+  min-width: 300px;
   overflow-x: hidden;
 }
 
-div {
+div, p {
   display: block;
 }
 
@@ -60,7 +63,7 @@ li {
     left:10px;
     width:50%;
     height:20%;
-    max-width:300px;
+    max-width:240px;
     max-height:100px;
     -webkit-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
        -moz-box-shadow:0 15px 10px rgba(0, 0, 0, 0.7);
@@ -218,7 +221,33 @@ li {
 }
 
 .flip {
-   width: 400px;
+   width: 300px;
    position: relative;
    margin: 0 auto;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.login {
+	display: inline-block;
+	height: 29px;
+	width: 70px;
+	line-height: 29px;
+	text-indent: 10px;
+	background: #88c932;
+	font-size: 14px;
+	font-family: "Microsoft YaHei","WenQuanYi Micro Hei",SimHei,tohoma,sans-serif;
+	text-decoration: none;
+}
+
+.login a {
+	color: #f7f7f7;
+    text-decoration: none;
 }

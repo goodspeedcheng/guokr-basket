@@ -12,17 +12,27 @@ String.prototype.format = function() {
 };
 
 function getCookies(domain, callback) {
+	localStorage.removeItem('ukey');
+	localStorage.removeItem('token');
     chrome.cookies.getAll({"domain": "www.guokr.com"}, function(cookie) {
         allCookieInfo = "";
         for (i=0; i<cookie.length; i++){
-            //console.log(JSON.stringify(cookie[i]));
+            console.log(JSON.stringify(cookie[i]));
             if (cookie[i].name == "_32353_access_token"){
                 localStorage.token = cookie[i].value;
+				console.log(1);
             } else if (cookie[i].name == "_32353_ukey"){
                 localStorage.ukey = cookie[i].value;
             }
             allCookieInfo = allCookieInfo + JSON.stringify(cookie[i]);
         }
+	    var ukey = localStorage.ukey;
+	    if (ukey){
+            getBaskets(ukey);
+	    	clickBasket();
+	    }else{
+            loginGuokr();
+	    }
     });
 }
 
@@ -96,19 +106,17 @@ function removeFromBasket(t){
 	});
 }
 
-$(document).ready(function(){
-    getCookies();
-    ukey = localStorage.ukey;
-    token = localStorage.token;
-    getBaskets(ukey);
+function clickBasket(){
     $('.baskets').delegate('.basket','click', function(){
 		var t = $(this)
 		var bid = t.data('bid');
 		t.toggleClass("added");
 		getCurrentLink();
 		link = localStorage.current_link;
+	    localStorage.removeItem('current_link');
 		if (t.hasClass("added")){
 			var title = localStorage.title;
+	        localStorage.removeItem('title');
 			addToBasket(bid, link, title, t);
 		}else{
 			var id = t.data('fid');
@@ -116,6 +124,15 @@ $(document).ready(function(){
 		}
         return false;
     });
+}
+
+function loginGuokr(){
+	var login = $("#loginTemplate").html();
+	$(".baskets").append(login);
+}
+
+$(document).ready(function(){
+    getCookies();
 	$('.hack').click(function(){
 		hack_html();
 	});
