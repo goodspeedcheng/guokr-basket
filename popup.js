@@ -56,7 +56,7 @@ function addToBasket(basketId, fruit_url,title, t){
 	    data: {
 		    retrieve_type : 'by_basket',
 	        basket_id: basketId,
-	        url: "http://www.google.com",
+	        url: fruit_url,
 	        //url: fruit_url,
 	        source: 'other_site',
 	        title: title,
@@ -76,7 +76,8 @@ function addToBasket(basketId, fruit_url,title, t){
 
 function hack_html(){
 	chrome.tabs.executeScript(null,
-	    {code:"document.body.style.backgroundColor='black'"});
+	    {code:"$('html>*').css('background', 'black')"});
+	    //{code:"document.body.style.backgroundColor='black'"});
 }
 
 function removeFromBasket(t){
