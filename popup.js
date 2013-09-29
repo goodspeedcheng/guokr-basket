@@ -86,8 +86,8 @@ function addToBasket(basketId, fruit_url,title, t){
 
 function hack_html(){
 	chrome.tabs.executeScript(null,
-	    {code:"$('html>*').css('background', 'black')"});
-	    //{code:"document.body.style.backgroundColor='black'"});
+	    //{code:"$('html>*').css('background', 'black')"});
+	    {code:"document.body.style.backgroundColor='black'"});
 }
 
 function removeFromBasket(t){
