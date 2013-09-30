@@ -37,9 +37,9 @@ function getCookies(domain, callback) {
 }
 
 function toHtml(data) {
-    ul = $('<ul>').appendTo('.baskets');
+    ul = $('<ol class="tags">').appendTo('.baskets');
     $(data.result).each(function(index, basket) {
-        var cardTemplate = $("#cardTemplate").html();
+        var cardTemplate = $("#basketTemplate").html();
         var template = cardTemplate.format(basket.id, basket.title, basket.fruits_count)
         ul.append(template);
     });
@@ -67,7 +67,6 @@ function addToBasket(basketId, fruit_url,title, t){
 		    retrieve_type : 'by_basket',
 	        basket_id: basketId,
 	        url: fruit_url,
-	        //url: fruit_url,
 	        source: 'other_site',
 	        title: title,
 	        summary: title,
@@ -75,10 +74,11 @@ function addToBasket(basketId, fruit_url,title, t){
 		},
 	    success: function(f){
 			id = f.result.id;
+            console.log(t);
 			t.data('fid', id);
-		    t.toggleClass("rotated");
-			var count = t.children(".right").text();
-			t.children(".right").text(+count + 1);
+		    t.toggleClass("selected");
+			var count = t.find(".meta").text();
+			t.find(".meta").text(+count + 1);
 		},
 	    dataType: 'json'
 	});
@@ -98,8 +98,8 @@ function removeFromBasket(t){
 		success: function(d){
             t.toggleClass("rotated");
 			t.data('fid', '');
-			var count = t.children(".right").text();
-			t.children(".right").text(+count - 1);
+			var count = t.find(".meta").text();
+			t.find(".meta").text(+count - 1);
 			t = null;
 		},
 		dataType: 'json'
